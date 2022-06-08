@@ -19,6 +19,7 @@ class _MistakePageState extends State<MistakePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             color: Colors.grey,
@@ -55,7 +56,7 @@ class _MistakePageState extends State<MistakePage> {
           Container(
             color: Colors.blueGrey,
             height: 500,
-            width: 500,
+            width: 200,
             child: ListView.builder(
               padding: const EdgeInsets.all(10),
               itemCount: widget.files.length,
