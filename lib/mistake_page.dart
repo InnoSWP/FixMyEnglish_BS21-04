@@ -21,7 +21,7 @@ class _MistakePageState extends State<MistakePage> {
       body: Row(
         children: [
           Container(
-            color: Colors.black,
+            color: Colors.grey,
             height: 500,
             width: 500,
             child: FutureBuilder(
@@ -40,7 +40,15 @@ class _MistakePageState extends State<MistakePage> {
                         .toList(),
                   );
                 }
-                return const Text('no mistakes');
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      'No Mistakes',
+                      style: TextStyle(),
+                    ),
+                  ],
+                );
               },
             ),
           ),
@@ -49,7 +57,7 @@ class _MistakePageState extends State<MistakePage> {
             height: 500,
             width: 500,
             child: ListView.builder(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               itemCount: widget.files.length,
               itemBuilder: (context, index) {
                 return FutureBuilder(
@@ -60,13 +68,18 @@ class _MistakePageState extends State<MistakePage> {
                       }
                       String filename = (snapshot.data as MistakeFile).name;
                       return TextButton(
-                          onPressed: () {
-                            print(index);
-                            setState(() {
-                              _currentFile = index;
-                            });
-                          },
-                          child: Text(filename));
+                        onPressed: () {
+                          print(index);
+                          setState(() {
+                            _currentFile = index;
+                          });
+                        },
+                        child: Text('File 1'),
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              Color.fromRGBO(233, 241, 232, 1)),
+                        ),
+                      );
                     });
               },
             ),
