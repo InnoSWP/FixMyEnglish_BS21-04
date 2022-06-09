@@ -43,8 +43,8 @@ class _MistakePageState extends State<MistakePage> {
                 }
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
+                  children: const [
+                    Text(
                       'No Mistakes',
                       style: TextStyle(),
                     ),

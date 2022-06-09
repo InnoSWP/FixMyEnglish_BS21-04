@@ -26,6 +26,8 @@ Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
           json.decode(response.body).map((x) => Mistake.fromJson(x))),
     );
   } else {
-    return MistakeFile(filename, []);
+    return MistakeFile(filename, [
+      Mistake(match: "", sentence: "Server Error", label: "", description: "")
+    ]);
   }
 }
