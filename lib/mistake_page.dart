@@ -18,6 +18,9 @@ class _MistakePageState extends State<MistakePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Mistakes Page'),
+      ),
       body: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,7 +32,10 @@ class _MistakePageState extends State<MistakePage> {
               future: widget.files[_currentFile],
               builder: (context, snapshot) {
                 if (snapshot.data == null) {
-                  return const CircularProgressIndicator();
+                  return const CircularProgressIndicator(
+                    backgroundColor: Colors.red,
+                    strokeWidth: 8,
+                  );
                 }
                 List<Mistake> data = (snapshot.data as MistakeFile).mistakes;
                 if (data.isNotEmpty) {
@@ -65,7 +71,10 @@ class _MistakePageState extends State<MistakePage> {
                     future: widget.files[index],
                     builder: (context, snapshot) {
                       if (snapshot.data == null) {
-                        return const CircularProgressIndicator();
+                        return const CircularProgressIndicator(
+                          backgroundColor: Colors.red,
+                          strokeWidth: 8,
+                        );
                       }
                       String filename = (snapshot.data as MistakeFile).name;
                       return TextButton(

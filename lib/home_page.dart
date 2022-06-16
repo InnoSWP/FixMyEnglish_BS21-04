@@ -23,14 +23,16 @@ class HomePage extends StatelessWidget {
 
   void redirectToMistakePage(
       BuildContext context, List<Future<MistakeFile>> files) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return MistakePage(files: files);
-    }));
+    Navigator.push(context, MaterialPageRoute(builder: (context) => MistakePage(files: files)
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+          title: Text('Fix My English'),
+      ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
