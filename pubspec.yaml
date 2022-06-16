@@ -38,6 +38,8 @@ dependencies:
   syncfusion_flutter_pdf: ^19.1.59
   flutter_svg: ^0.18.0
   file_picker: ^4.6.1
+  substring_highlight: ^1.0.33
+  analyzer_plugin: ^0.4.0
 
 dev_dependencies:
   flutter_test:
