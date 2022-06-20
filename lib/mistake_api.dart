@@ -8,7 +8,7 @@ import 'mistake.dart';
 
 Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
   final response = await http.post(
-    Uri.parse('$proxy$urlAPI'),
+    Uri.parse(urlAPI),
     headers: {
       "accept": "application/json",
       "Content-Type": "application/json",

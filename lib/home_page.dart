@@ -1,5 +1,7 @@
+import 'package:FixMyEnglish/file_download.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import 'Widgets/home_header.dart';
@@ -23,15 +25,15 @@ class HomePage extends StatelessWidget {
 
   void redirectToMistakePage(
       BuildContext context, List<Future<MistakeFile>> files) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => MistakePage(files: files)
-    ));
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => MistakePage(files: files)));
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text('Fix My English'),
+        title: const Text('Fix My English'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
