@@ -27,8 +27,14 @@ class MistakeItem extends StatelessWidget {
         margin: EdgeInsets.all(10),
         child: Column(
           children: [
-
             buildDTH(sentence, matches, description),
+
+            ElevatedButton(
+              onPressed: () {
+                print('reported');
+              },
+              child: const Icon(Icons.report),
+            )
           ],
         ),
       ),
