@@ -21,19 +21,19 @@ class MistakeItem extends StatelessWidget {
       onTap: null,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(15),
         ),
         elevation: 7,
         margin: EdgeInsets.all(10),
-        child: Column(
+        child: Row(
           children: [
             buildDTH(sentence, matches, description),
-
-            ElevatedButton(
+            TextButton(
               onPressed: () {
                 print('reported');
               },
-              child: const Icon(Icons.report),
+              child: const Icon(Icons.report,
+              color: Colors.grey),
             )
           ],
         ),

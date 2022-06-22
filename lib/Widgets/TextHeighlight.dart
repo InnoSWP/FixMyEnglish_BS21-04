@@ -7,15 +7,18 @@ Widget buildDTH(String text, List<String> highlights, String description) {
     padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 5),
     child: Tooltip(
       message: description,
-      child: DynamicTextHighlighting(
-        text: text,
-        highlights: highlights,
-        color: Color.fromRGBO(255, 0, 0, 0.5),
-        style: TextStyle(
-          fontSize: 18.0,
-          fontStyle: FontStyle.italic,
+      child: SizedBox(
+        width: 590,
+        child: DynamicTextHighlighting(
+          text: text,
+          highlights: highlights,
+          color: Color.fromRGBO(255, 0, 0, 0.5),
+          style: TextStyle(
+            fontSize: 18.0,
+            fontStyle: FontStyle.italic,
+          ),
+          caseSensitive: false,
         ),
-        caseSensitive: false,
       ),
     ),
   );
