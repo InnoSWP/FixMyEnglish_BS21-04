@@ -1,7 +1,7 @@
 import 'package:FixMyEnglish/mistake.dart';
 
 var mistakes = [
-  Mistake(match: "n't",
+  /*Mistake(match: "n't",
       sentence: "This solution isn't the most effective one.",
       label: "SPOKN1",
       description: "Using contractions"
@@ -15,7 +15,7 @@ var mistakes = [
       sentence: "this is good.",
       label: "VOCAB5",
       description: "using a forbidden words"
-  ),
+  ),*/
   Mistake(
       match: "Also",
       sentence: "Also, React Native provides complete access to the device hardware, such as the camera, file system, Bluetooth, etc.",

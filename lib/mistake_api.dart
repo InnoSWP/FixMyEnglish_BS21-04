@@ -5,8 +5,13 @@ import 'package:http/http.dart' as http;
 import 'main.dart';
 import 'file.dart';
 import 'mistake.dart';
+import 'mistakes_demo_data.dart';
 
 Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
+
+  //TODO : Remove when solving the API problem
+  return MistakeFile('File 1', mistakes);
+
   final response = await http.post(
     Uri.parse(urlAPI),
     headers: {
@@ -19,6 +24,7 @@ Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
     }),
   );
   print(response.body);
+
   if (response.statusCode == 200) {
     return MistakeFile(
       filename,
@@ -30,4 +36,7 @@ Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
       Mistake(match: "", sentence: "Server Error", label: "", description: "")
     ]);
   }
+
+
+
 }

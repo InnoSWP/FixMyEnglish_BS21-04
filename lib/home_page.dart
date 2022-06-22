@@ -105,7 +105,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   List<Future<MistakeFile>> files = [];
-                  files.add(mistakeFromAPI(controller.text, 'unnamed'));
+                  files.add(mistakeFromAPI(controller.text, 'unNamed'));
                   redirectToMistakePage(context, files);
                 },
                 style: ButtonStyle(
@@ -113,7 +113,7 @@ class HomePage extends StatelessWidget {
                       const Color.fromRGBO(233, 241, 232, 1)),
                 ),
                 child: const Text(
-                  'Upload Text',
+                  'Analyze Text',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                       color: Color.fromRGBO(73, 69, 7, 1),
