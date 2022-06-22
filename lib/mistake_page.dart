@@ -188,10 +188,10 @@ class _MistakePageState extends State<MistakePage> {
                           ),
                         ),
                       ),
-                      SizedBox(
-                        width: 200,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 20),
+                      Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: SizedBox(
+                          width: 200,
                           child: ElevatedButton(
                             style: ButtonStyle(
                               backgroundColor: MaterialStateProperty.all<Color>(
@@ -207,7 +207,10 @@ class _MistakePageState extends State<MistakePage> {
                                 }
                               }
                             },
-                            child: const Text('Export All Files'),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: const Text('Export All Files'),
+                            ),
                           ),
                         ),
                       ),
