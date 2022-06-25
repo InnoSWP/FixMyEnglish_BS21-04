@@ -1,6 +1,5 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:substring_highlight/substring_highlight.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import 'Widgets/home_header.dart';
@@ -80,6 +79,7 @@ class HomePage extends StatelessWidget {
                         String text = PdfTextExtractor(document).extractText();
                         files.add(mistakeFromAPI(text, file.name));
                       }
+                      // ignore: use_build_context_synchronously
                       redirectToMistakePage(context, files);
                     }
                   },
