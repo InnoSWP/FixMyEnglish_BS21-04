@@ -1,3 +1,6 @@
+// ignore_for_file: file_names
+
+// ignore: import_of_legacy_library_into_null_safe
 import 'package:dynamic_text_highlighting/dynamic_text_highlighting.dart';
 import 'package:flutter/material.dart';
 
