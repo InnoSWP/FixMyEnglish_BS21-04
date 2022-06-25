@@ -1,0 +1,28 @@
+# Automatically generated on 2022-06-25 UTC from https://codemagic.io/app/62b70b7264710a7367c6dcb6/settings
+# Note that this configuration is not an exact match to UI settings. Review and adjust as necessary.
+
+workflows:
+  default-workflow:
+    name: Default Workflow
+    max_build_duration: 60
+    environment:
+      flutter: default
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - flutter packages pub get
+      - flutter config --enable-web
+      - |
+        # build web
+        flutter build web --release
+        cd build/web
+        7z a -r ../web.zip ./*
+    artifacts:
+      - build/web.zip
+      - '*.snap'
+      - build/windows/**/*.msix
+      - flutter_drive.log
+    publishing:
+      email:
+        recipients:
+          - pokemon88005553535@gmail.com
