@@ -1,5 +1,4 @@
 import 'package:dynamic_text_highlighting/dynamic_text_highlighting.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 Widget buildDTH(String text, List<String> highlights, String description) {
@@ -12,8 +11,8 @@ Widget buildDTH(String text, List<String> highlights, String description) {
         child: DynamicTextHighlighting(
           text: text,
           highlights: highlights,
-          color: Color.fromRGBO(255, 0, 0, 0.5),
-          style: TextStyle(
+          color: const Color.fromRGBO(255, 0, 0, 0.5),
+          style: const TextStyle(
             fontSize: 18.0,
             fontStyle: FontStyle.italic,
           ),

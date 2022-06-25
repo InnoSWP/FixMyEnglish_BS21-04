@@ -15,17 +15,17 @@ class MyApp extends StatelessWidget {
 
   final MaterialColor kPrimaryColor = const MaterialColor(
     0xFF494507,
-    const <int, Color>{
-      50: const Color(0xFF494507),
-      100: const Color(0xFF494507),
-      200: const Color(0xFF494507),
-      300: const Color(0xFF494507),
-      400: const Color(0xFF494507),
-      500: const Color(0xFF494507),
-      600: const Color(0xFF494507),
-      700: const Color(0xFF494507),
-      800: const Color(0xFF494507),
-      900: const Color(0xFF494507),
+    <int, Color>{
+      50: Color(0xFF494507),
+      100: Color(0xFF494507),
+      200: Color(0xFF494507),
+      300: Color(0xFF494507),
+      400: Color(0xFF494507),
+      500: Color(0xFF494507),
+      600: Color(0xFF494507),
+      700: Color(0xFF494507),
+      800: Color(0xFF494507),
+      900: Color(0xFF494507),
     },
   );
   @override
@@ -34,10 +34,9 @@ class MyApp extends StatelessWidget {
       title: 'Fix My English',
       home: HomePage(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: kPrimaryColor,
-        )
-      ),
+          colorScheme: ColorScheme.fromSwatch(
+        primarySwatch: kPrimaryColor,
+      )),
     );
   }
 }

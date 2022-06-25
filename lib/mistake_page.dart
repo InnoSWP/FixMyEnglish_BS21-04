@@ -1,7 +1,6 @@
 import 'package:FixMyEnglish/file_download.dart';
 import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter/material.dart';
-import 'package:substring_highlight/substring_highlight.dart';
 
 import 'Widgets/mistake_item.dart';
 import 'file.dart';
@@ -24,7 +23,7 @@ class MistakePage extends StatefulWidget {
 class _MistakePageState extends State<MistakePage> {
   int _currentFile = 0;
   Color color = Colors.white;
-  List<Pair<String, String>> _filesStructure = [];
+  final List<Pair<String, String>> _filesStructure = [];
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +47,17 @@ class _MistakePageState extends State<MistakePage> {
 
        */
           Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
             color: color,
             width: 700,
-            padding: EdgeInsets.only(top: 25),
+            padding: const EdgeInsets.only(top: 25),
             child: FutureBuilder(
               future: widget.files[_currentFile],
               builder: (context, snapshot) {
                 if (snapshot.data == null) {
-                  return Text(
+                  return const Text(
                     '',
                     style: TextStyle(
                       backgroundColor: Colors.white,
@@ -86,7 +85,7 @@ class _MistakePageState extends State<MistakePage> {
                   );
                 }
 
-                return Center(
+                return const Center(
                   child: Text('No Mistakes Found'),
                 );
               },
@@ -113,7 +112,7 @@ class _MistakePageState extends State<MistakePage> {
                                 future: widget.files[index],
                                 builder: (context, snapshot) {
                                   if (snapshot.data == null) {
-                                    return Text(
+                                    return const Text(
                                       '',
                                       style: TextStyle(
                                         backgroundColor: Colors.white,
@@ -158,7 +157,8 @@ class _MistakePageState extends State<MistakePage> {
                                       ),
                                       child: Text(
                                         filename,
-                                        style: TextStyle(color: Colors.black),
+                                        style: const TextStyle(
+                                            color: Colors.black),
                                       ),
                                     ),
                                   );
@@ -182,9 +182,9 @@ class _MistakePageState extends State<MistakePage> {
                             download(fileStructure,
                                 downloadName: '$filename.csv');
                           },
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: const Text('Export Current File'),
+                          child: const Padding(
+                            padding: EdgeInsets.all(8.0),
+                            child: Text('Export Current File'),
                           ),
                         ),
                       ),
@@ -199,17 +199,15 @@ class _MistakePageState extends State<MistakePage> {
                             ),
                             onPressed: () {
                               if (_filesStructure.isNotEmpty) {
-                                print(_filesStructure.length);
                                 for (final file in _filesStructure) {
-                                  print(file.last);
                                   download(file.first,
                                       downloadName: '${file.last}.csv');
                                 }
                               }
                             },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text('Export All Files'),
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('Export All Files'),
                             ),
                           ),
                         ),
@@ -228,7 +226,7 @@ class _MistakePageState extends State<MistakePage> {
   void hideProgressBar() {
     setState(() {
       isVisible = false;
-      color = Color.fromRGBO(247, 250, 235, 1);
+      color = const Color.fromRGBO(247, 250, 235, 1);
     });
   }
 }
