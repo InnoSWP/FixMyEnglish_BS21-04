@@ -1,6 +1,3 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'TextHeighlight.dart';
@@ -10,7 +7,8 @@ class MistakeItem extends StatelessWidget {
   final String match;
   final String description;
 
-  MistakeItem(this.sentence, this.match, this.description);
+  const MistakeItem(this.sentence, this.match, this.description, {Key? key})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,19 +19,20 @@ class MistakeItem extends StatelessWidget {
       onTap: null,
       child: Card(
         shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15),
+          borderRadius: BorderRadius.circular(15),
         ),
         elevation: 7,
-        margin: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(10),
         child: Row(
           children: [
             buildDTH(sentence, matches, description),
             TextButton(
               onPressed: () {
-                print('reported');
+                /*
+                  TODO: report
+                 */
               },
-              child: const Icon(Icons.report,
-              color: Colors.grey),
+              child: const Icon(Icons.report, color: Colors.grey),
             )
           ],
         ),

@@ -8,35 +8,31 @@ import 'mistake.dart';
 import 'mistakes_demo_data.dart';
 
 Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
-
   //TODO : Remove when solving the API problem
-  return MistakeFile('File 1', mistakes);
+  return MistakeFile(filename, mistakes);
 
-  final response = await http.post(
-    Uri.parse(urlAPI),
-    headers: {
-      "accept": "application/json",
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*"
-    },
-    body: jsonEncode({
-      "text": text,
-    }),
-  );
-  print(response.body);
+  // final response = await http.post(
+  //   Uri.parse(urlAPI),
+  //   headers: {
+  //     "accept": "application/json",
+  //     "Content-Type": "application/json",
+  //     "Access-Control-Allow-Origin": "*"
+  //   },
+  //   body: jsonEncode({
+  //     "text": text,
+  //   }),
+  // );
+  // print(response.body);
 
-  if (response.statusCode == 200) {
-    return MistakeFile(
-      filename,
-      List<Mistake>.from(
-          json.decode(response.body).map((x) => Mistake.fromJson(x))),
-    );
-  } else {
-    return MistakeFile(filename, [
-      Mistake(match: "", sentence: "Server Error", label: "", description: "")
-    ]);
-  }
-
-
-
+  // if (response.statusCode == 200) {
+  //   return MistakeFile(
+  //     filename,
+  //     List<Mistake>.from(
+  //         json.decode(response.body).map((x) => Mistake.fromJson(x))),
+  //   );
+  // } else {
+  //   return MistakeFile(filename, [
+  //     Mistake(match: "", sentence: "Server Error", label: "", description: "")
+  //   ]);
+  // }
 }

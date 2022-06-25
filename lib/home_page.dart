@@ -1,4 +1,3 @@
-import 'package:FixMyEnglish/file_download.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:substring_highlight/substring_highlight.dart';
@@ -38,8 +37,8 @@ class HomePage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          HomeHeader(),
-          Container(
+          const HomeHeader(),
+          SizedBox(
             width: 720,
             height: 275,
             child: Padding(
@@ -105,7 +104,7 @@ class HomePage extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   List<Future<MistakeFile>> files = [];
-                  files.add(mistakeFromAPI(controller.text, 'unNamed'));
+                  files.add(mistakeFromAPI(controller.text, 'File.pdf'));
                   redirectToMistakePage(context, files);
                 },
                 style: ButtonStyle(
