@@ -2,8 +2,6 @@ import 'dart:async';
 
 import 'package:FixMyEnglish/file_download.dart';
 import 'package:FixMyEnglish/mistake_api.dart';
-// ignore: import_of_legacy_library_into_null_safe
-// import 'package:analyzer_plugin/utilities/pair.dart';
 import 'package:flutter/material.dart';
 
 import 'Widgets/mistake_item.dart';
