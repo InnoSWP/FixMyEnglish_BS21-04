@@ -1,3 +1,4 @@
+import 'package:FixMyEnglish/mistake_page_text.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
@@ -25,6 +26,17 @@ class HomePage extends StatelessWidget {
       BuildContext context, List<Future<MistakeFile>> files) {
     Navigator.push(context,
         MaterialPageRoute(builder: (context) => MistakePage(files: files)));
+  }
+
+  void redirectToMistakePageText(
+      BuildContext context, Future<MistakeFile> file) {
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => MistakePageText(
+                  file: file,
+                  parentController: controller,
+                )));
   }
 
   @override
@@ -103,9 +115,8 @@ class HomePage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  List<Future<MistakeFile>> files = [];
-                  files.add(mistakeFromAPI(controller.text, 'File.pdf'));
-                  redirectToMistakePage(context, files);
+                  redirectToMistakePageText(
+                      context, mistakeFromAPI(controller.text, 'File.pdf'));
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(

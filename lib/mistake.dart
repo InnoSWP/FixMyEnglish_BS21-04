@@ -12,17 +12,17 @@ class Mistake {
   });
 
   factory Mistake.fromJson(Map<String, dynamic> json) => Mistake(
-        match: json["match"],
-        sentence: json["sentence"],
-        label: json["label"],
-        description: json["description"],
+        match: json['match'],
+        sentence: json['sentence'],
+        label: json['label'],
+        description: json['description'],
       );
 
   Map<String, dynamic> toJson() => {
-        "match": match,
-        "sentence": sentence,
-        "label": label,
-        "description": description,
+        'match': match,
+        'sentence': sentence,
+        'label': label,
+        'description': description,
       };
 
   @override
