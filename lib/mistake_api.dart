@@ -1,10 +1,11 @@
-// import 'dart:convert';
+import 'dart:convert';
 
-// import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 
-// import 'main.dart';
+// ignore: import_of_legacy_library_into_null_safe
+import 'main.dart';
 import 'file.dart';
-// import 'mistake.dart';
+import 'mistake.dart';
 import 'mistakes_demo_data.dart';
 
 Future<MistakeFile> mistakeFromAPI(String text, String filename) async {

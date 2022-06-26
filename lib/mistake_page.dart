@@ -59,7 +59,7 @@ class _MistakePageState extends State<MistakePage> {
               builder: (context, snapshot) {
                 if (snapshot.data == null) {
                   return const Text(
-                    '',
+                    'Loading',
                     style: TextStyle(
                       backgroundColor: Colors.white,
                     ),
