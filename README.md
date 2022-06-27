@@ -15,3 +15,5 @@ A new Flutter project.
 ## Framework and Technology
 
 ## License
+
+The content of this site is licensed under the MIT License
