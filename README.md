@@ -1,6 +1,6 @@
 # fixmyenglish
 
-![a](assets/logo.jpg)
+![a](assets/logo2.jpg)
 
 A new Flutter project.
 
