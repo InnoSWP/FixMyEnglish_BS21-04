@@ -16,4 +16,4 @@ A new Flutter project.
 
 ## License
 
-The content of this site is licensed under the MIT License
+The content is licensed under the MIT License
