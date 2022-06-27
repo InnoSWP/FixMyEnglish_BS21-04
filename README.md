@@ -1,5 +1,7 @@
 # fixmyenglish
 
+![a](assets/logo.jpg)
+
 A new Flutter project.
 
 ## Getting Started
