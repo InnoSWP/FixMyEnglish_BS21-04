@@ -8,7 +8,7 @@ A new Flutter project.
 
 ## Demo
 
-## Description
+## How to use
 
 ## Features
 
