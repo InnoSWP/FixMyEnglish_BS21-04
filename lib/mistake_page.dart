@@ -72,7 +72,7 @@ class _MistakePageState extends State<MistakePage> {
 
                 filename = (snapshot.data as MistakeFile).name;
                 filename =
-                    filename.substring(0, filename.characters.length /*- 4*/);
+                    filename.substring(0, filename.characters.length - 4);
                 List<Mistake> data = (snapshot.data as MistakeFile).mistakes;
                 if (data.isNotEmpty) {
                   return ListView(
