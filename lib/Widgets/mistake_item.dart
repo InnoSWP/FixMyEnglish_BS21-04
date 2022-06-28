@@ -1,20 +1,19 @@
+import 'package:FixMyEnglish/mistake.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 
 import 'TextHeighlight.dart';
 
 class MistakeItem extends StatelessWidget {
-  final String sentence;
-  final String match;
-  final String description;
+  final Mistake mistake;
 
-  const MistakeItem(this.sentence, this.match, this.description, {Key? key})
-      : super(key: key);
+  const MistakeItem(this.mistake, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     //Converting match from string to List<String> to work with the widget
     List<String> matches = <String>[];
-    matches.add(match);
+    matches.add(mistake.match);
     return InkWell(
       onTap: null,
       child: Card(
@@ -25,12 +24,67 @@ class MistakeItem extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Row(
           children: [
-            buildDTH(sentence, matches, description),
+            buildDTH(mistake.sentence, matches, mistake.label),
             TextButton(
               onPressed: () {
-                /*
-                  TODO: report
-                 */
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      TextEditingController controller =
+                          TextEditingController();
+                      return AlertDialog(
+                        title: const Text('Report?'),
+                        content: SizedBox(
+                          width: 500,
+                          height: 200,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              buildDTH(
+                                  mistake.sentence, matches, mistake.label),
+                              TextField(
+                                controller: controller,
+                                minLines: 1,
+                                maxLines: 1,
+                                decoration: InputDecoration(
+                                  label: const Text('Reason'),
+                                  fillColor: Colors.white,
+                                  border: OutlineInputBorder(
+                                    borderSide: const BorderSide(
+                                        color: Colors.black, width: 2.0),
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Cancel'),
+                          ),
+                          TextButton(
+                            onPressed: () async {
+                              print(1337);
+                              final database =
+                                  FirebaseDatabase.instance.ref('reports');
+                              database.push().set({
+                                'match': mistake.match,
+                                'sentence': mistake.sentence,
+                                'label': mistake.label,
+                                'description': mistake.description,
+                                'reason': controller.text,
+                              });
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Report'),
+                          ),
+                        ],
+                      );
+                    });
               },
               child: const Icon(Icons.report, color: Colors.grey),
             )

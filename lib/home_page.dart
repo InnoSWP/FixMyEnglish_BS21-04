@@ -115,8 +115,10 @@ class HomePage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  redirectToMistakePageText(
-                      context, mistakeFromAPI(controller.text, 'File.pdf'));
+                  if (controller.text.isNotEmpty) {
+                    redirectToMistakePageText(
+                        context, mistakeFromAPI(controller.text, 'File.pdf'));
+                  }
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(

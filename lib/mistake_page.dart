@@ -79,8 +79,7 @@ class _MistakePageState extends State<MistakePage> {
                     padding: const EdgeInsets.all(10),
                     children: data
                         .map(
-                          (mistake) => MistakeItem(mistake.sentence,
-                              mistake.match, mistake.description),
+                          (mistake) => MistakeItem(mistake),
                         )
                         .toList(),
                   );

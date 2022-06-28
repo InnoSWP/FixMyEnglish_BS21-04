@@ -1,4 +1,6 @@
 // @dart=2.9
+import 'package:FixMyEnglish/firebase_options.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
@@ -6,7 +8,13 @@ import 'home_page.dart';
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 const urlAPI = 'https://aqueous-anchorage-93443.herokuapp.com/FixMyEnglish';
 
-void main() {
+FirebaseApp fbApp;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  fbApp = await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
