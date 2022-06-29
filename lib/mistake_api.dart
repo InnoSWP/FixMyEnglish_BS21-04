@@ -4,13 +4,23 @@
 
 // ignore: import_of_legacy_library_into_null_safe
 // import 'main.dart';
+import 'dart:math';
+
 import 'file.dart';
 // import 'mistake.dart';
 import 'mistakes_demo_data.dart';
 
 Future<MistakeFile> mistakeFromAPI(String text, String filename) async {
   //TODO : Remove when solving the API problem
-  return MistakeFile(filename, mistakes);
+  Random rng = Random();
+  switch (rng.nextInt(3)) {
+    case 2:
+      return MistakeFile(filename, mistakes3);
+    case 1:
+      return MistakeFile(filename, mistakes2);
+    default:
+      return MistakeFile(filename, mistakes1);
+  }
 
   // final response = await http.post(
   //   Uri.parse(urlAPI),
