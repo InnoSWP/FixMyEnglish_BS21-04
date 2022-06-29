@@ -42,9 +42,10 @@ class MyApp extends StatelessWidget {
       title: 'Fix My English',
       home: HomePage(),
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSwatch(
-        primarySwatch: kPrimaryColor,
-      )),
+        colorScheme: ColorScheme.fromSwatch(
+          primarySwatch: kPrimaryColor,
+        ),
+      ),
     );
   }
 }
