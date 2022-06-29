@@ -147,16 +147,6 @@ class _MistakePageState extends State<MistakePage> {
                                       0, filename.characters.length - 4);
                                   data =
                                       (snapshot.data as MistakeFile).mistakes;
-                                  String fileStructure = csvBase;
-                                  for (int i = 0; i < data.length; i++) {
-                                    fileStructure +=
-                                        '${data[i].match},${data[i].sentence},${data[i].label},${data[i].description}\n';
-                                  }
-                                  if (!_filesStructure.contains(
-                                      Pair(fileStructure, filename))) {
-                                    _filesStructure
-                                        .add(Pair(fileStructure, filename));
-                                  }
                                   return Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(0, 5, 0, 5),
@@ -282,11 +272,21 @@ class _MistakePageState extends State<MistakePage> {
                                   const Color.fromRGBO(73, 69, 7, 1)),
                             ),
                             onPressed: () {
-                              if (_filesStructure.isNotEmpty) {
-                                for (final file in _filesStructure) {
-                                  download(file.first,
-                                      downloadName: '${file.last}.csv');
-                                }
+                              for (final file in files) {
+                                file.then((value) {
+                                  String fileStructure = csvBase;
+                                  for (int i = 0;
+                                      i < value.mistakes.length;
+                                      i++) {
+                                    fileStructure +=
+                                        '${value.mistakes[i].match},${value.mistakes[i].sentence},${value.mistakes[i].label},${value.mistakes[i].description}\n';
+                                  }
+                                  download(
+                                    fileStructure,
+                                    downloadName:
+                                        '${value.name.substring(0, value.name.characters.length - 4)}.csv',
+                                  );
+                                });
                               }
                             },
                             child: const Padding(
