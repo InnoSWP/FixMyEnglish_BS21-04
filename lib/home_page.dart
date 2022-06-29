@@ -43,7 +43,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fix My English'),
+        title: const Text(
+          'Fix My English',
+          style: TextStyle(
+            fontFamily: 'Eczar',
+            fontSize: 24,
+          ),
+        ),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

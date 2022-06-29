@@ -24,7 +24,8 @@ class MistakeItem extends StatelessWidget {
         margin: const EdgeInsets.all(10),
         child: Row(
           children: [
-            buildDTH(mistake.sentence, matches, mistake.label),
+            buildDTH(
+                mistake.sentence, matches, mistake.label, mistake.description),
             TextButton(
               onPressed: () {
                 showDialog(
@@ -40,8 +41,8 @@ class MistakeItem extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              buildDTH(
-                                  mistake.sentence, matches, mistake.label),
+                              buildDTH(mistake.sentence, matches, mistake.label,
+                                  mistake.description),
                               TextField(
                                 controller: controller,
                                 minLines: 1,
@@ -68,7 +69,6 @@ class MistakeItem extends StatelessWidget {
                           ),
                           TextButton(
                             onPressed: () async {
-                              print(1337);
                               final database =
                                   FirebaseDatabase.instance.ref('reports');
                               database.push().set({
