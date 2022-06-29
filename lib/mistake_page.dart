@@ -1,7 +1,10 @@
 import 'package:FixMyEnglish/file_download.dart';
+import 'package:FixMyEnglish/mistake_api.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:analyzer_plugin/utilities/pair.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 import 'Widgets/mistake_item.dart';
 import 'file.dart';
@@ -24,7 +27,14 @@ class MistakePage extends StatefulWidget {
 class _MistakePageState extends State<MistakePage> {
   int _currentFile = 0;
   Color color = Colors.white;
+  late List<Future<MistakeFile>> files;
   final List<Pair<String, String>> _filesStructure = [];
+
+  @override
+  void initState() {
+    files = widget.files;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +71,7 @@ class _MistakePageState extends State<MistakePage> {
             width: 700,
             padding: const EdgeInsets.only(top: 25),
             child: FutureBuilder(
-              future: widget.files[_currentFile],
+              future: files[_currentFile],
               builder: (context, snapshot) {
                 if (snapshot.data == null) {
                   return const Text(
@@ -112,10 +122,10 @@ class _MistakePageState extends State<MistakePage> {
                         height: 450,
                         child: ListView.builder(
                           padding: const EdgeInsets.all(10),
-                          itemCount: widget.files.length,
+                          itemCount: files.length,
                           itemBuilder: (context, index) {
                             return FutureBuilder(
-                                future: widget.files[index],
+                                future: files[index],
                                 builder: (context, snapshot) {
                                   if (snapshot.data == null) {
                                     return const Text(
@@ -134,7 +144,7 @@ class _MistakePageState extends State<MistakePage> {
                                   String filename =
                                       (snapshot.data as MistakeFile).name;
                                   filename = filename.substring(
-                                      0, filename.characters.length /*- 4*/);
+                                      0, filename.characters.length - 4);
                                   data =
                                       (snapshot.data as MistakeFile).mistakes;
                                   String fileStructure = csvBase;
@@ -147,24 +157,56 @@ class _MistakePageState extends State<MistakePage> {
                                     _filesStructure
                                         .add(Pair(fileStructure, filename));
                                   }
-                                  return SizedBox(
-                                    height: 30,
-                                    child: TextButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          _currentFile = index;
-                                        });
-                                      },
-                                      style: ButtonStyle(
-                                        backgroundColor:
-                                            MaterialStateProperty.all<Color>(
-                                                const Color.fromRGBO(
-                                                    233, 241, 232, 1)),
-                                      ),
-                                      child: Text(
-                                        filename,
-                                        style: const TextStyle(
-                                            color: Colors.black),
+                                  return Padding(
+                                    padding:
+                                        const EdgeInsets.fromLTRB(0, 5, 0, 5),
+                                    child: Container(
+                                      color: index == _currentFile
+                                          ? const Color.fromARGB(
+                                              56,
+                                              141,
+                                              180,
+                                              246,
+                                            )
+                                          : const Color.fromRGBO(
+                                              233,
+                                              241,
+                                              232,
+                                              1,
+                                            ),
+                                      height: 30,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          TextButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                _currentFile = index;
+                                              });
+                                            },
+                                            child: Text(
+                                              filename,
+                                              style: const TextStyle(
+                                                  color: Colors.black),
+                                            ),
+                                          ),
+                                          IconButton(
+                                            onPressed: () {
+                                              if (files.length == 1) {
+                                                Navigator.of(context).pop();
+                                              } else {
+                                                setState(() {
+                                                  files.removeAt(index);
+                                                  _currentFile = 0;
+                                                });
+                                              }
+                                            },
+                                            icon: const Icon(Icons.delete),
+                                          )
+                                        ],
                                       ),
                                     ),
                                   );
@@ -172,30 +214,66 @@ class _MistakePageState extends State<MistakePage> {
                           },
                         ),
                       ),
-                      SizedBox(
-                        width: 200,
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                const Color.fromRGBO(73, 69, 7, 1)),
-                          ),
-                          onPressed: () {
-                            String fileStructure = csvBase;
-                            for (int i = 0; i < data.length; i++) {
-                              fileStructure +=
-                                  '${data[i].match},${data[i].sentence},${data[i].label},${data[i].description}\n';
-                            }
-                            download(fileStructure,
-                                downloadName: '$filename.csv');
-                          },
-                          child: const Padding(
-                            padding: EdgeInsets.all(8.0),
-                            child: Text('Export Current File'),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
+                        child: SizedBox(
+                          width: 200,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color.fromRGBO(73, 69, 7, 1)),
+                            ),
+                            onPressed: () async {
+                              FilePickerResult? result =
+                                  await FilePicker.platform.pickFiles(
+                                allowMultiple: true,
+                                type: FileType.custom,
+                                allowedExtensions: ['pdf'],
+                              );
+                              if (result != null) {
+                                for (final file in result.files) {
+                                  final PdfDocument document =
+                                      PdfDocument(inputBytes: file.bytes);
+                                  String text =
+                                      PdfTextExtractor(document).extractText();
+                                  files.add(mistakeFromAPI(text, file.name));
+                                }
+                              }
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('Upload More'),
+                            ),
                           ),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(12.0),
+                        padding: const EdgeInsets.all(6.0),
+                        child: SizedBox(
+                          width: 200,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all<Color>(
+                                  const Color.fromRGBO(73, 69, 7, 1)),
+                            ),
+                            onPressed: () {
+                              String fileStructure = csvBase;
+                              for (int i = 0; i < data.length; i++) {
+                                fileStructure +=
+                                    '${data[i].match},${data[i].sentence},${data[i].label},${data[i].description}\n';
+                              }
+                              download(fileStructure,
+                                  downloadName: '$filename.csv');
+                            },
+                            child: const Padding(
+                              padding: EdgeInsets.all(8.0),
+                              child: Text('Export Current File'),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(6.0),
                         child: SizedBox(
                           width: 200,
                           child: ElevatedButton(
