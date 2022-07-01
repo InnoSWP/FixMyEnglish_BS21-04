@@ -169,13 +169,16 @@ class _MistakePageTextState extends State<MistakePageText> {
                                   const Color.fromRGBO(73, 69, 7, 1)),
                             ),
                             onPressed: () {
-                              String fileStructure = csvBase;
-                              for (int i = 0; i < data.length; i++) {
-                                fileStructure +=
-                                    '${data[i].match},${data[i].sentence},${data[i].label},${data[i].description}\n';
-                              }
-                              download(fileStructure,
-                                  downloadName: '$filename.csv');
+                              file.then((value) {
+                                String fileStructure = csvBase;
+                                for (int i = 0;
+                                    i < value.mistakes.length;
+                                    i++) {
+                                  fileStructure +=
+                                      '${value.mistakes[i].match},${value.mistakes[i].sentence},${value.mistakes[i].label},${value.mistakes[i].description}\n';
+                                }
+                                download(fileStructure);
+                              });
                             },
                             child: const Padding(
                               padding: EdgeInsets.all(8.0),
