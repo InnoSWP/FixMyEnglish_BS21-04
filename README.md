@@ -6,11 +6,13 @@
 This is a Flutter project that is used for analysing English written text an fixing academic writing mistakes using NLP.
 ## Demo
 
+See the demo video <a href="https://drive.google.com/file/d/1ynozL0H-8P6Rbic_fURK2fwHcbyMxXeI/view?usp=sharing">here</a>.
 ## How to use
-You can try analysing your text following this link
+You can try analysing your text following this <a href="https://fix-my-english-556de.web.app/">link</a>.
 The website has 2 main features that you can see on the starting page:
   - Upload Text
   - Upload PDF
+
 After uploading you will see the list of mistakes and a button to download report.
 ## Features
   - Analysing text for academic writing mistakes
